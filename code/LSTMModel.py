@@ -133,7 +133,9 @@ class LSTMModel:
         # ])
 
         logits = tf.matmul(lstm_outputs, self.ws) + self.bs
-        self.probs = tf.nn.softmax(logits)
+        #self.probs = tf.nn.softmax(logits)
+        temperature = 1.8;
+        self.probs = tf.nn.softmax(tf.div(logits, temperature))
 
         ##
         # Train
